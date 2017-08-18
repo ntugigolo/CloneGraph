@@ -1,0 +1,22 @@
+<style>
+</style>
+<%= stylesheet_link_tag 'graph_page' %>
+<script>
+      var timeList = {"period":"OneWeek",
+                       "startNumDays":365,
+                       "startNumHours":0,
+                       "endNumDays":0,
+                       "endNumHours":0   
+      };
+      var machineList = ["tilt","milo","hex"];
+      var product = "shoes"
+      var type = "machine"
+      localStorage.setItem("timeList",JSON.stringify(timeList));
+      localStorage.setItem("machineList",JSON.stringify(machineList));
+      localStorage.setItem("product",JSON.stringify(product));
+      localStorage.setItem("type",JSON.stringify(type));
+</script>
+<%= javascript_include_tag "dashboard" %>
+
+<div class='pageTitle'>Shoes Success Rate Yearly</div>
+<div id='graphListSR'></div>

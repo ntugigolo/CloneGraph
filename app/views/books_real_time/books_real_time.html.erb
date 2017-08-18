@@ -1,0 +1,22 @@
+<style>
+</style>
+<%= stylesheet_link_tag 'graph_page' %>
+<script>
+      var timeList = {"period":"OneDay",
+                       "startNumDays":7,
+                       "startNumHours":0,
+                       "endNumDays":0,
+                       "endNumHours":0   
+      };
+      var machineList = ["sis"];
+      var product = "books"
+      var type = "machine"
+      localStorage.setItem("timeList",JSON.stringify(timeList));
+      localStorage.setItem("machineList",JSON.stringify(machineList));
+      localStorage.setItem("product",JSON.stringify(product));
+      localStorage.setItem("type",JSON.stringify(type));
+</script>
+<%= javascript_include_tag "dashboard" %>
+
+<div class='pageTitle'>Books and Media Success Rate Weekly</div>
+<div id='graphListSR'></div>

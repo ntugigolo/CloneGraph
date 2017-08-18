@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Oswald:400' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Auto-Retouch Dashboard</title>
+        <%= stylesheet_link_tag 'index_page' %>
+
+        <%= javascript_include_tag "application" %>
+        <script>
+        </script>
+    </head>
+    
+    <body onload='MAINPAGE.init();'>
+        
+        <div class='noSelect' id='MAINPAGEMenuButton' onclick='MAINPAGE.menu.show();'>
+            <img src='assets/menu16.png'>
+        </div>
+        
+        <div class='noSelect centerHorizontalVertical' style='justify-content: flex-start;' id='MAINPAGELogRollerActivity'>        
+            <div class='spinner' style='width: 16px; height: 16px;'></div>
+            <div style='text-transform: uppercase; font-size: 12px; font-weight: 400; margin-left: 8px'></div>
+        </div>
+
+        <div id="timePeriod" style="position:relative; left:100px; top:0px;">
+        <form class="form-inline" id = "form-inline" style="background-color:#303030,clear: both;">
+          <label class="black">Start:</label>
+            <input type="textbox" class="textbox" name="input_start" onkeydown="if (event.keyCode == 13) { on(this.form); return false; }">
+          <select class="select" id="StartSelect">
+            <option value="1">Days Ago</option>
+            <option value="2">Hours Ago</option>
+          </select>
+          <label class="black">End:</label>
+            <input type="textbox" class="textbox" name="input_end" onkeydown="if (event.keyCode == 13) { on(this.form); return false; }">
+          <select class="select" id="EndSelect">
+            <option value="1">Days Ago</option>
+            <option value="2">Hours Ago</option>
+          </select>
+          <label class="black">Period:</label>
+          <select class="select" id="PeriodSelect">
+            <option value="OneHour">One Hour</option>
+            <option value="OneDay">One Day</option>
+            <option value="OneWeek">One Week</option>
+          </select>
+          <button type="button" class="btn btn-primary" id = "change_time" onclick="changeTimePoints(this.form)">Submit</button>
+        </form>
+        </div>
+
+        <div class='graphTemplate' id='graphTemplateSR' style='display: none;'>
+            <div id='title' ><strong>Title<strong></div>
+            <div class='graphContainer' id='graphContainer'>
+                <div class='spinner graphSpinner' id='spinner'></div>
+                <div class='graph' id='graph'></div>
+            </div>
+            <form class="form-inline" id = "form-inline">
+              <input type="textbox" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Smoothing" name="input_window" onkeydown="if (event.keyCode == 13) { tuneDataPoints(this.form); return false; }">
+              <input type="textbox" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Weight of Partial" name="input_weight" onkeydown="if (event.keyCode == 13) { tuneDataPoints(this.form); return false; }">
+              <button type="button" class="btn btn-primary" id = "tuneWindowPoints" onclick="tuneDataPoints(this.form)">Submit</button>
+              <button class="btn btn-default" type="button" id="refresh" onclick="tuneDataPoints(this.form, this)">
+                <span class="glyphicon glyphicon-refresh"></span> </button>
+            </form>
+        </div>
+        
+        <div id='MAINPAGESpinnerContainer'>
+            <div class='spinner'></div>
+        </div>
+        
+        <div id='MAINPAGEPageContainer'></div>
+
+        <!-- Font preloading -->
+        <div style='position: fixed; top: -1000px; left: -1000px;'>
+            <div style='font-family: Open Sans; font-weight: 400;'>.</div> 
+            <div style='font-family: Open Sans; font-weight: 300;'>.</div>
+            <div style='font-family: Open Sans; font-weight: 600;'>.</div>
+            <div style='font-family: Open Sans; font-weight: 700;'>.</div>
+            <div style='font-family: Open Sans; font-weight: 800;'>.</div>
+            <div style='font-family: Oswald; font-weight: 400;'>.</div>
+            <div style='font-family: Open Sans Condensed; font-weight: 300;'>.</div>
+            <div style='font-family: Open Sans Condensed; font-weight: 700;'>.</div>
+            <div style='font-family: Open Sans Condensed; font-weight: 800;'>.</div>
+        </div>
+
+    </body>
+    
+</html>

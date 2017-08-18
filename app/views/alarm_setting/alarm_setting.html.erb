@@ -1,0 +1,119 @@
+<style>
+</style>
+<%= stylesheet_link_tag 'graph_page' %>
+<script>
+      function onPageLoad(context) {
+        document.getElementById('timePeriod').style.display = 'none';
+        changeTable('daily')
+      }
+      function changeTable(type){  
+        document.getElementById("daily").style.display = "none"; 
+        document.getElementById("emergency").style.display = "none"; 
+        document.getElementById(type).style.display = "block";    
+            $.ajax({
+              type:'GET',
+              async: true,
+              url:"get_table_data",
+              data:{
+                'type':type
+              },
+              success:function(result){
+                res = JSON.parse(result);
+                $('input[type=text]').each(function(){
+                  var $this = $(this);
+                  var name = $this.attr("name");
+                  $this.attr('placeholder',res[name])
+                });
+              }
+            });
+    } 
+      function checkMailExist(){  
+        var deleteMailAddress= $("#DeleteMailAddress").val();
+            $.ajax({
+              type:'GET',
+              async: true,
+              url:"check_email_in_db",
+              data:{
+                'deleteMailAddress':deleteMailAddress
+              },
+              success:function(result){
+                alert(result);
+              }
+            });
+    } 
+</script>
+<div class='pageTitle'>Alarm Setting</div>
+  <select class="btn btn-default dropdown-toggle" onclick="changeTable(this.value)" style="font-weight:bold">
+    <option value="daily">Daily</option>
+    <option value="emergency">Emergency</option>
+  </select>
+<%= form_tag({controller: "alarm_setting",action: "setting"},id: "form",method: "get",onkeypress: "return event.keyCode != 13;", class: "form-horizontal") do %>
+  <br>
+  <div class="Table" style="background-color:#303030">
+    <table class="table">
+      <thead>
+      <tr>
+        <th><font size="4">Field</font></th>
+        <th><font size="4">Threshold(%)</font></th>
+        <th><font size="4">Condition(%)</font></th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><font size="4">Shoes TILT</font></td>
+          <td><%= text_field_tag 'tilt',"",class: 'textbox' %></td>
+          <td><%= text_field_tag 'shoes_machine_condition',"",class: 'textbox' %></td>
+        </tr>
+        <tr>
+          <td><font size="4">Shoes MILO</font></td>
+          <td><%= text_field_tag 'milo',"",class: 'textbox' %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><font size="4">Shoes HEX</font></td>
+          <td><%= text_field_tag 'hex',"",class: 'textbox' %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><font size="4">Shoes Studio</font></td>
+          <td></td>
+          <td><%= text_field_tag 'shoes_studio_condition',"",class: 'textbox' %></td>
+        </tr>
+        <tr>
+          <td><font size="4">Books/Media SIS</font></td>
+          <td><%= text_field_tag 'sis',"",class: 'textbox' %></td>
+          <td><%= text_field_tag 'books_machine_condition',"",class: 'textbox' %></td>
+        </tr>
+        <tr>
+          <td><font size="4">Books/Media Studio</font></td>
+          <td></td>
+          <td><%= text_field_tag 'books_studio_condition',"",class: 'textbox' %></td>
+        </tr>
+        <tr>
+          <td><font size="4">Apparel</font></td>
+          <td><%= text_field_tag 'manual',"",class: 'textbox' %></td>
+          <td><%= text_field_tag 'apparel_machine_condition',"",class: 'textbox' %></td>
+        </tr>
+        <tr>
+          <td><font size="4">Apparel Studio</font></td>
+          <td></td>
+          <td><%= text_field_tag 'apparel_studio_condition',"",class: 'textbox' %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class = "btn-group btn-toggle">
+  <%= submit_tag("Update Daily Alarm", class: "btn btn-primary", style:"position:relative", id: "daily")%>
+  <%= submit_tag("Update Emergency Alarm", class: "btn btn-primary", style:"position:relative; display:none",id: "emergency")%>
+  </div>
+<% end %>
+<br>
+<%= form_tag({controller: "alarm_setting",action: "db_setting_update"},method: "get", class: "form-inline", style: "background-color:#303030;") do %>
+  <label class="black">Add New Studio:</label> <%= text_field_tag 'Studio',"",class: 'textbox' %>
+  <label class="black">Add New Contact:</label><%= text_field_tag 'MailAddress',"",class: 'textbox', style:"width:200px", type:"email", placeholder:"example@amazon.com" %>
+  <label class="black">Delete Contact:</label><%= text_field_tag 'DeleteMailAddress',"",class: 'textbox', style:"width:200px", type:"email", placeholder:"example@amazon.com" , onblur:"checkMailExist()" %>
+  <br>
+  <label class="black">Change Timeout:</label><%= text_field_tag 'RecoveryDays',"",class: 'textbox' %>
+  <label class="black">Min. Attempts for Alarm:</label><%= text_field_tag 'AttemptsThreshold',"",class: 'textbox' %>
+  <%= submit_tag("Submit Change", class: "btn btn-primary")%> 
+<% end %>

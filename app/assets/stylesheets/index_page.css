@@ -1,0 +1,203 @@
+        html {
+                height: 100%;
+            }
+            body {
+                height: 100%;
+                background: #202020;
+                color: #ffffff;
+                font-family: Sans-Serif;
+                font-size: 16px;
+                font-weight: 300;
+                margin: 0px;
+            }
+            a {
+                color: #0096ff;
+                font-weight: 400;
+                transition: color 0.15s ease-out;
+            }
+            a:hover {
+                color: #71c5ff;
+            }
+            #MAINPAGEMenuButton {
+                position: fixed;
+                top: 8px;
+                left: 8px;
+                width: 38px;
+                height: 38px;
+                z-index: 10;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.15s ease-out;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            #MAINPAGEMenuButton:hover {
+                background: #303030;
+            }
+            #MAINPAGEMenuButton:active {
+                background: #505050;
+            }
+            #MAINPAGEPageContainer {
+                height: 100%;
+                margin: 0px 54px 0px 54px;
+                padding: 8px 0px 8px 0px;
+                box-sizing: border-box;
+                transition: opacity 0.25s ease-out;
+            }
+            .MENUMenu {
+                background: #303030;
+                border-right: 1px solid #606060;
+            }
+            .MENUMenuItem {
+                margin: 8px 8px 0px 8px;
+                cursor: pointer;
+                transition: background 0.25s ease-out;
+                /*display:inline;*/
+                font-family: Open Sans Condensed;
+                font-size: 20px;
+                font-weight: 400;
+                padding: 8px;
+                text-shadow: 0px 0px 8px black;
+                text-transform: uppercase;
+                border-radius: 1px;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .MENUMenuItemSubMenuActive:after, .MENUMenuItemSubMenuActive:before {
+                left: 100%;
+                top: 50%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+            }
+            .MENUMenuItemSubMenuActive:after {
+                border-color: rgba(136, 183, 213, 0);
+                border-left-color: #303030;
+                border-width: 7px;
+                margin-top: -7px;
+            }
+            .MENUMenuItemSubMenuActive:before {
+                border-color: rgba(194, 225, 245, 0);
+                border-left-color: #606060;
+                border-width: 8px;
+                margin-top: -8px;
+            }
+            .MENUMenuItemSubMenuActive {
+                position: relative;
+            }
+            .MENUMenuItem:hover {
+                background: #404040;
+            }
+            .MENUMenuItem:active{
+                background: #606060;
+            }
+            #MAINPAGESpinnerContainer {
+                position: fixed;
+                top: 6px;
+                left: 6px;
+                width: 42px;
+                height: 42px;
+                transition: opacity 0.35s ease-out;
+                opacity: 0;
+            }
+            #MAINPAGELogRollerActivity {
+                position: fixed;
+                top: 8px;
+                right: 0px;
+                padding: 8px;
+                background: #303030;
+                border: 1px solid #606060;
+                border-right: 0px;
+                border-radius: 1px;
+                display: flex;
+                transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+                z-index: 1000;
+                pointer-events: none;
+                opacity: 0;
+            }
+            .centerHorizontalVertical {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .pageTitle {
+                font-family: Sans-Serif;
+                font-size: 40px;
+                font-weight: 400;
+                text-align: right;
+                border-bottom: 1px solid #ffffff;
+                margin-bottom: 8px;
+                padding-bottom: 8px;
+            }
+            .spinner {
+                height: 100%;
+                height: 100%;
+                border-radius: 50%;
+                box-sizing: border-box;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                border-top-color: #ffffff;
+                animation: spin 1s infinite linear;
+            }
+            @keyframes spin { 
+              100% { 
+                transform: rotate(360deg); 
+              } 
+            } 
+
+            .button {
+                border: 1px solid #606060;
+                border-radius: 1px;
+                background: #303030;
+                padding: 4px 8px;
+                transition: background 0.25s ease-out;
+                cursor: pointer;
+            }
+            .header {
+                text-transform: uppercase;
+                font-family: Open Sans Condensed; 
+                font-size: 24px;
+            }
+            .button:hover {
+                background: #404040;
+            }
+            .noSelect {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .button:active {
+                background: #505050;
+            }
+            .textbox {
+                font-family: Sans-Serif;
+                font-size: inherit;
+                border-radius: 1px;
+                border: 0px;
+                padding: 2px;
+                margin: 0px;
+                width: 80px; 
+                height: 25px;
+                color: black;
+                box-sizing: border-box;
+            }
+            select{
+                margin:20px;
+                background: rgba(0,0,0,0.3);
+                color:#fff;
+            }
+            select option {
+                margin: 20px;
+                background: rgba(0, 0, 0, 0.3);
+                color: #fff;
+            }

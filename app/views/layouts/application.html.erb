@@ -1,0 +1,47 @@
+<%if (is_permission_user() == true ) %>
+<%= yield %>
+<%else%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <title>Auto-Retouch Dashboard</title>
+        <style>
+            html {
+                height: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+            body {
+                height: 100%;
+                margin: 0px;
+                padding: 0px;
+                background: black;
+                color: #ffffff;
+                font-family: Open Sans;
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: center;
+                justify-content: center;
+            }
+            a {
+                color: red;
+            }
+            #header {
+                font-size: 20px;
+                font-weight: 600;
+                text-transform: uppercase;
+                margin-bottom: 32px;
+            }
+            #details {
+                font-size: 14px;
+                font-weight: 300;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='header'>Access Denied</div>
+    </body>
+</html>
+<%end%>
